@@ -12,14 +12,27 @@ function MessageBoard() {
     setInputMessage("");
   };
 
-  const listMessage = outputMessage.map((item) => {
+  const listMessage = outputMessage.map((item, index) => {
     return (
       <div className="message">
         <h1>{item}</h1>
-        <button className="delete-button">x</button>
+        <button
+          className="delete-button"
+          onClick={() => {
+            deleteMessage(index);
+          }}
+        >
+          x
+        </button>
       </div>
     );
   });
+
+  const deleteMessage = (messageIndex) => {
+    const newOutputMessage = [...outputMessage];
+    newOutputMessage.splice(messageIndex, 1);
+    setOutputMessage(newOutputMessage);
+  };
 
   return (
     <div className="app-wrapper">
